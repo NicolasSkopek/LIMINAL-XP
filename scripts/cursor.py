@@ -1,4 +1,5 @@
 import pygame
+pygame.mixer.init()
 
 class Cursor():
     def __init__(self):
@@ -9,6 +10,12 @@ class Cursor():
         self.cursor_default = pygame.image.load("assets/cursor/cursor.png").convert_alpha()
         self.cursor_hover = pygame.image.load("assets/cursor/pointer.png").convert_alpha()
         self.cursor_image = self.cursor_default
+
+        self.click_sound = pygame.mixer.Sound("assets/audios/click.mp3")
+        self.click_sound.set_volume(1.0)
+
+    def click(self):
+        self.click_sound.play()
 
     def change_cursor(self, state):
         if state == "hover":

@@ -21,11 +21,14 @@ class Windows(Scene):
         self.windows_button = StartButton("assets/bg/windowsbutton.png",[0, 660],self.all_sprites,hover_path="assets/bg/windowsbuttonselected.png")
         self.clock = Text("assets/font/tahoma.ttf", 15, "clock", (255,255,255), (1210, 665))
 
+
+
         self.cursor = Cursor()
 
 
     def events(self, event):
-        pass
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.cursor.click()
 
     def update(self):
         self.all_sprites.update()

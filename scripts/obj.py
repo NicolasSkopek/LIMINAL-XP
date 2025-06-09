@@ -23,10 +23,12 @@ class Obj(pygame.sprite.Sprite):
             self.image = pygame.image.load(path + str(self.frame) + "." + file_type)
 
 class File(Obj):
-    def __init__(self):
-        super().__init__()
-    
-    def update():
+    def __init__(self, title, *groups):
+        super().__init__(title, *groups)
+
+        self.image = pygame.image.load("file.png")
+
+    def update(self):
         pass
 
 
