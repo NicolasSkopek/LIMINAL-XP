@@ -1,4 +1,8 @@
+
 import pygame
+
+from scripts.text import Text
+
 
 class Obj(pygame.sprite.Sprite):
 
@@ -26,11 +30,11 @@ class File(Obj):
     def __init__(self, title, *groups):
         super().__init__(title, *groups)
 
-        self.image = pygame.image.load("file.png")
+        self.image = pygame.image.load("assets/bg/file.png")
+        self.title = Text("assets/font/tahoma.ttf", 10, title, (255,255,255), (self.rect.center, self.rect.bottom))
 
     def update(self):
         pass
-
 
 class StartButton(Obj):
     def __init__(self, image_path, pos, group, hover_path):

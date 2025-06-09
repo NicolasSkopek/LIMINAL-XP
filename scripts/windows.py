@@ -27,6 +27,7 @@ class Windows(Scene):
 
 
     def events(self, event):
+        self.cursor.handle_event(event)
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.cursor.click()
 
