@@ -27,14 +27,18 @@ class Obj(pygame.sprite.Sprite):
             self.image = pygame.image.load(path + str(self.frame) + "." + file_type)
 
 class File(Obj):
-    def __init__(self, title, *groups):
-        super().__init__(title, *groups)
+    def __init__(self, title, content_id, pos, *groups):
+        super().__init__("assets/bg/file.png", pos, *groups)
+        self.title_text = title
+        self.content_id = content_id
+        self.text = Text("assets/font/tahoma.ttf", 10, title, (255,255,255), (self.rect.x + 5, self.rect.y + self.rect.height + 2))
 
-        self.image = pygame.image.load("assets/bg/file.png")
-        self.title = Text("assets/font/tahoma.ttf", 10, title, (255,255,255), (self.rect.center, self.rect.bottom))
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+        self.text.draw()
 
-    def update(self):
-        pass
+    def was_clicked(self, mouse_pos):
+        return self.rect.collidepoint(mouse_pos)
 
 class StartButton(Obj):
     def __init__(self, image_path, pos, group, hover_path):
