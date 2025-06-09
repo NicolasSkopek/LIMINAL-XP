@@ -2,6 +2,7 @@ import datetime
 
 import pygame
 
+from scripts.cursor import Cursor
 from scripts.obj import Obj, StartButton
 from scripts.scene import Scene
 from scripts.text import Text
@@ -20,8 +21,8 @@ class Windows(Scene):
         self.windows_button = StartButton("assets/bg/windowsbutton.png",[0, 660],self.all_sprites,hover_path="assets/bg/windowsbuttonselected.png")
         self.clock = Text("assets/font/tahoma.ttf", 15, "clock", (255,255,255), (1210, 665))
 
-        pygame.mouse.set_visible(False)
-        self.cursor_image = pygame.image.load("assets/ui/cursor.png").convert_alpha()
+        self.cursor = Cursor()
+
 
     def events(self, event):
         pass
@@ -33,10 +34,21 @@ class Windows(Scene):
         current_time = datetime.datetime.now().strftime("%H:%M")
         self.clock.set_text(current_time)
 
+    def check_mouse_collide(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.windows_button.rect.collidepoint(mouse_pos):
+            self.cursor.change_cursor("hover")
+        else:
+            self.cursor.change_cursor("default")
+
     def update(self):
         self.all_sprites.update()
+        self.check_mouse_collide()
+        self.cursor.update()
         self.clock.draw()
         self.update_clock()
+
+
 
 
 

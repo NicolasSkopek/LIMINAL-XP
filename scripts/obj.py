@@ -22,6 +22,14 @@ class Obj(pygame.sprite.Sprite):
                 self.frame = 0
             self.image = pygame.image.load(path + str(self.frame) + "." + file_type)
 
+class File(Obj):
+    def __init__(self):
+        super().__init__()
+    
+    def update():
+        pass
+
+
 class StartButton(Obj):
     def __init__(self, image_path, pos, group, hover_path):
         super().__init__(image_path, pos, group)
